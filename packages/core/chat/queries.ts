@@ -85,6 +85,9 @@ export function taskMessagesOptions(taskId: string) {
     queryFn: () => api.listTaskMessages(taskId),
     enabled: !!taskId,
     staleTime: Infinity,
+    // This cache is also shared by issue agent cards; always refetch on focus
+    // so partial timelines recover when WS events were missed in background tabs.
+    refetchOnWindowFocus: "always",
   });
 }
 
