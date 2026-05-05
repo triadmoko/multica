@@ -149,7 +149,7 @@ func TestMiddlewareAuth_SuspendedJWT(t *testing.T) {
 	}
 
 	var saw403 bool
-	h := middleware.Auth(testHandler.Queries)(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	h := middleware.Auth(testHandler.Queries, nil)(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		saw403 = true
 		w.WriteHeader(http.StatusOK)
 	}))
